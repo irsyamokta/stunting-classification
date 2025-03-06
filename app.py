@@ -21,7 +21,7 @@ def load_data():
 df = load_data()
 
 st.title("Prediksi Status Gizi Balita Menggunakan Algoritma Random Forest Classifier")
-st.write("Model ini dibuat untuk memprediksi Status Gizi Balita berdasarkan umur (bulan), jenis kelamin, dan tinggi badan (cm). Model ini menggunakan Machine Learning untuk mengklasifikasikan status gizi balita menjadi beberapa kategori, yaitu: Severely Stunted (Gizi Buruk), Stunted (Gizi Kurang), Normal (Gizi Baik), Tinggi (Gizi Lebih)")
+st.write("Model ini dibuat untuk memprediksi Status Gizi Balita berdasarkan umur (bulan), jenis kelamin, dan tinggi badan (cm). Model ini menggunakan algoritma Random Forest Classifier untuk mengklasifikasikan status gizi balita menjadi beberapa kategori, yaitu: Severely Stunted (Gizi Buruk), Stunted (Gizi Kurang), Normal (Gizi Baik), Tinggi (Gizi Lebih)")
 
 st.subheader("Data Frame")
 st.dataframe(df.head(10))
@@ -64,7 +64,7 @@ plt.xlabel("Status Gizi")
 plt.ylabel("Jumlah")
 st.pyplot(plt)
 
-st.subheader("Status Gizi Berdasarkan Jenis Kelamin")
+st.subheader("Disribusi Status Gizi Berdasarkan Jenis Kelamin")
 gender_status_counts = df.groupby("Jenis Kelamin")["Status Gizi"].value_counts().unstack()
 gender_totals = df["Jenis Kelamin"].value_counts()
 
@@ -140,3 +140,6 @@ if st.button("Prediksi"):
 
     st.success(f"Prediksi Status Gizi: {status_gizi}")
     st.info(info.get(status_gizi, "Informasi tidak tersedia"))
+    
+st.subheader("Kesimpulan")
+st.write("Model ini dapat digunakan sebagai alat bantu dalam monitoring status gizi balita, khususnya bagi tenaga kesehatan atau orang tua yang ingin mengetahui apakah anak mereka mengalami gizi buruk, kurang gizi, atau memiliki status gizi normal. Meskipun model ini memiliki performa yang baik, hasil prediksi tetap harus dikombinasikan dengan pemeriksaan langsung oleh ahli gizi atau dokter untuk tindakan lebih lanjut.")
