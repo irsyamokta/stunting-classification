@@ -30,6 +30,7 @@ st.write(f"Total data dalam dataset: {df.shape[0]}")
 st.subheader("Missing Value")
 missing_values = df.isnull().sum().reset_index()
 missing_values.columns = ["Kolom", "Jumlah"]
+missing_values["Jumlah"] = missing_values["Jumlah"].astype(str)
 st.write(missing_values)
 
 st.subheader("Distribusi Jenis Kelamin")
