@@ -2,9 +2,9 @@ import streamlit as st
 import pandas as pd
 import joblib
 
-model_path = "../model/gizi_model.pkl"
+model_path = "./gizi_model.pkl"
 model = joblib.load(model_path)
-label_encoders = joblib.load("../model/label_encoders.pkl")
+label_encoders = joblib.load("./label_encoders.pkl")
 
 gender_mapping = {
     "Laki-laki": "laki-laki",
