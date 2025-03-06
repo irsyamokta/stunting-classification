@@ -27,8 +27,10 @@ st.subheader("Data Frame")
 st.dataframe(df.head(10))
 st.write(f"Total data dalam dataset: {df.shape[0]}")
 
-st.subheader("Total Missing Value")
-st.write(df.isnull().sum())
+st.subheader("Missing Value")
+missing_values = df.isnull().sum().reset_index()
+missing_values.columns = ["Kolom", "Jumlah"]
+st.write(missing_values)
 
 st.subheader("Distribusi Jenis Kelamin")
 gender_counts = df["Jenis Kelamin"].value_counts()
