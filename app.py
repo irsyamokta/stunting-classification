@@ -67,7 +67,7 @@ plt.xlabel("Status Gizi")
 plt.ylabel("Jumlah")
 st.pyplot(plt)
 
-st.subheader("Disribusi Status Gizi Berdasarkan Jenis Kelamin")
+st.subheader("Distribusi Status Gizi Berdasarkan Jenis Kelamin")
 gender_status_counts = df.groupby("Jenis Kelamin")["Status Gizi"].value_counts().unstack()
 gender_totals = df["Jenis Kelamin"].value_counts()
 
