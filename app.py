@@ -3,6 +3,7 @@ import pandas as pd
 import joblib
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.preprocessing import label_binarize
 from sklearn.metrics import accuracy_score, classification_report, roc_curve, auc
 
 model_path = "./model/gizi_model.pkl"
@@ -102,18 +103,23 @@ report = classification_report(y_test, y_pred, target_names=label_encoders["Stat
 report_df = pd.DataFrame(report).transpose()
 st.dataframe(report_df)
 
-st.subheader("ROC Curve")
+st.subheader("ROC & AUC Curve")
+n_classes = len(label_encoders["Status Gizi"].classes_)
+y_test_bin = label_binarize(y_test, classes=range(n_classes))
 y_score = model.predict_proba(X_test)
-fpr, tpr, _ = roc_curve(y_test, y_score[:, 1], pos_label=1)
-roc_auc = auc(fpr, tpr)
+plt.figure(figsize=(8, 6))
+for i in range(n_classes):
+    fpr, tpr, _ = roc_curve(y_test_bin[:, i], y_score[:, i])
+    roc_auc = auc(fpr, tpr)
+    plt.plot(fpr, tpr, label=f'ROC curve (class {label_encoders["Status Gizi"].classes_[i]}) (AUC = {roc_auc:.2f})')
 
-plt.figure(figsize=(6, 4))
-plt.plot(fpr, tpr, color='blue', lw=2, label=f'ROC curve (area = {roc_auc:.2f})')
-plt.plot([0, 1], [0, 1], color='gray', linestyle='--')
+plt.plot([0, 1], [0, 1], 'k--')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
 plt.xlabel("False Positive Rate")
 plt.ylabel("True Positive Rate")
 plt.title("Receiver Operating Characteristic (ROC) Curve")
-plt.legend()
+plt.legend(loc="lower right")
 st.pyplot(plt)
 
 st.subheader("Pengujian Model")
