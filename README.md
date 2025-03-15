@@ -1,6 +1,6 @@
 # Klasifikasi Status Gizi Balita
 
-Proyek ini bertujuan untuk mengklasifikasikan status gizi balita berdasarkan berbagai faktor kesehatan dan pertumbuhan. Model yang digunakan dalam proyek ini adalah **Random Forest Classifier** dan **Support Vector Machine (SVM)**. Setelah dilakukan evaluasi, model **KNN** dipilih sebagai model terbaik karena memberikan akurasi tertinggi.
+Proyek ini bertujuan untuk mengklasifikasikan status gizi balita berdasarkan berbagai faktor kesehatan dan pertumbuhan. Model yang digunakan dalam proyek ini adalah **Random Forest Classifier**, **K-Nearest Neighbor** dan **Support Vector Machine (SVM)**. Setelah dilakukan evaluasi, model **SVM** dipilih sebagai model terbaik karena memberikan akurasi terbaik tanpa overfiting.
 
 ## Dataset
 Dataset yang digunakan dalam proyek ini berasal dari **[Kaggle](https://www.kaggle.com/datasets/rendiputra/stunting-balita-detection-121k-rows)**. Dataset ini berisi berbagai fitur kesehatan dan pertumbuhan balita, seperti:
@@ -25,19 +25,20 @@ pip install -r requirements.txt
 2. **Load Dataset**: Membaca data dan melakukan eksplorasi awal.
 3. **Preprocessing Data**: Menangani duplikasi data, menghapus outlier dan pembagian dataset menjadi training dan testing.
 4. **Training Model**:
-   - Membangun model **KNN** dan **SVM**
+   - Membangun model **Random Forest**, **KNN** dan **SVM**
 5. **Evaluasi Model**:
    - Menghitung metrik evaluasi seperti **akurasi, precision, recall, dan F1-score**.
-   - Membandingkan performa KNN dan SVM.
+   - Membandingkan performa Random Forest, KNN dan SVM.
 6. **Kesimpulan**: Menentukan algoritma terbaik berdasarkan hasil evaluasi.
 
 ## Hasil Perbandingan Model
 | Model | Akurasi |
 |--------|----------|
-| KNN | **93%** |
-| SVM | 87% |
+| Random Forest | **99%** |
+| KNN | **99%** |
+| SVM | 95% |
 
-Berdasarkan hasil evaluasi, **KNN memberikan akurasi lebih tinggi dibandingkan SVM**, sehingga dipilih sebagai model akhir untuk klasifikasi diabetes.
+Berdasarkan hasil evaluasi, **SVM memberikan akurasi terbaik tanpa overfiting dibandingkan Random Forest dan KNN**, sehingga dipilih sebagai model akhir untuk klasifikasi status gizi pada balita.
 
 ## Cara Menjalankan Proyek
 1. Clone repositori ini:
