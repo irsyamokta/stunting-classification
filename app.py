@@ -6,9 +6,11 @@ import seaborn as sns
 from sklearn.preprocessing import label_binarize
 from sklearn.metrics import accuracy_score, classification_report, roc_curve, auc
 
-model_path = "./model/gizi_model.pkl"
+st.set_page_config(page_title="Stunting Classifiaction", layout="wide")
+
+model_path = "./model/svm_model.pkl"
 model = joblib.load(model_path)
-label_encoders = joblib.load("./model/label_encoders.pkl")
+label_encoders = joblib.load("./utils/label_encoders.pkl")
 
 gender_mapping = {
     "Laki-laki": "laki-laki",
@@ -21,8 +23,8 @@ def load_data():
 
 df = load_data()
 
-st.title("Prediksi Status Gizi Balita Menggunakan Algoritma Random Forest Classifier")
-st.write("Model ini dibuat untuk memprediksi Status Gizi Balita berdasarkan umur (bulan), jenis kelamin, dan tinggi badan (cm). Model ini menggunakan algoritma Random Forest Classifier untuk mengklasifikasikan status gizi balita menjadi beberapa kategori, yaitu: Severely Stunted (Gizi Buruk), Stunted (Gizi Kurang), Normal (Gizi Baik), Tinggi (Gizi Lebih)")
+st.title("Klasifikasi Status Gizi Balita Menggunakan Algoritma Random Forest Classifier")
+st.write("Model ini dibuat untuk mengklasifikasikan Status Gizi Balita berdasarkan umur (bulan), jenis kelamin, dan tinggi badan (cm). Model ini menggunakan algoritma Random Forest Classifier untuk mengklasifikasikan status gizi balita menjadi beberapa kategori, yaitu: Severely Stunted (Gizi Buruk), Stunted (Gizi Kurang), Normal (Gizi Baik), Tinggi (Gizi Lebih)")
 
 st.subheader("Data Frame")
 st.dataframe(df.head(10))
